@@ -1,67 +1,39 @@
-import 'dart:convert';
 
-MeetingsData meetingsDataFromJson(String str) => MeetingsData.fromJson(json.decode(str));
+class Meeting {
+  final String title;
+  final String date;
+  final String startTime;
+  final String endTime;
+  final String description;
+  final String day;
+  final String month;
 
-String meetingsDataToJson(MeetingsData data) => json.encode(data.toJson());
+  Meeting(
+      {required this.title,
+        required this.date,
+        required this.startTime,
+        required this.endTime,
+        required this.description,
+        required this.day,
+        required this.month});
 
-class MeetingsData {
-  MeetingsData({
-    this.date,
-    this.description,
-    this.endTime,
-    this.startTime,
-    this.title,
-  });
-
-  final String? date;
-  final String? description;
-  final String? endTime;
-  final String? startTime;
-  final String? title;
-
-  factory MeetingsData.fromJson(Map<String, dynamic> json) => MeetingsData(
+  factory Meeting.fromJson(Map<String, dynamic> json) => Meeting(
     date: json["date"],
+    title: json["title"],
     description: json["description"],
     endTime: json["endTime"],
     startTime: json["startTime"],
-    title: json["title"],
+    day: json["day"],
+    month: json["month"],
   );
 
   Map<String, dynamic> toJson() => {
     "date": date,
+    "title": title,
     "description": description,
     "endTime": endTime,
     "startTime": startTime,
-    "title": title,
+    "month": month,
+    "day": day
   };
 }
-
-// class MeetingsData {
-//   final String? title;
-//   final String? date;
-//   final String? startTime;
-//   final String? endTime;
-//   final String? description;
-//
-//   MeetingsData(
-//       {required this.endTime,
-//       required this.title,
-//       required this.date,
-//       required this.startTime,
-//       required this.description});
-//
-//   factory MeetingsData.fromJson(Map<String, dynamic> json) => MeetingsData(
-//       endTime: json["endTime"],
-//       title: json["title"],
-//       date: json["date"],
-//       startTime: json["startTime"],
-//       description: json["description"]);
-//
-//   Map<String, dynamic> toJson() => {
-//        "title": title,
-//         "date": date,
-//         "startTime": startTime,
-//         "description": description,
-//         "endTime": endTime,
-//       };
-// }

@@ -9,17 +9,7 @@ part 'create_task_state.dart';
 class CreateTaskCubit extends Cubit<CreateTaskState> {
   CreateTaskCubit(this.createTask) : super(CreateTaskInitial());
   final CreateTaskRepo? createTask;
-  List categoryList = [
-    'Development',
-    'Research',
-    'Design',
-    'Backend',
-    'Frontend',
-    'Marketing',
-    'Business Development',
-  ];
 
-  List<bool> isSelect = [true, false, false, false, false, false, false];
   DateTime date = DateTime.now();
   TimeOfDay time = TimeOfDay.now();
   TextEditingController titleTaskControl = TextEditingController();
@@ -45,8 +35,9 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
 
     createTask!
         .setData(
-      monthName: monthName,
-     date:date ,
+ dayNum:dayNumber!,
+
+      date:date ,
       title: title,
       description: description,
       day: day,
@@ -56,6 +47,8 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
         .then((value) {
       print(day);
       print(monthName);
+      print(dayNumber);
+
       print('success');
 
 
@@ -80,7 +73,9 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
       dateFormat = DateFormat('EEEE, d MMMM').format(date);
     monthName = DateFormat('MMMM').format(date);
       dayName = DateFormat('EEEE').format(date);
+      dayNumber= DateFormat('d').format(date);
       dateControl.text = dateFormat!.toString();
+      print(dayNumber);
       emit(DateSuccessState());
     }).catchError((onError) {
       emit(DateExceptionState());

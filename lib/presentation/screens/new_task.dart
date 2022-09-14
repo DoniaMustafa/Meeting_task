@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meeting_task/config/color.dart';
 import 'package:meeting_task/config/font_style.dart';
-import 'package:meeting_task/model.dart';
 import 'package:meeting_task/utils/constant.dart';
 import 'package:meeting_task/utils/di.dart';
 import 'package:meeting_task/presentation/cubit/create_task/create_task_cubit.dart';
 import 'package:meeting_task/presentation/widgets/custom_button_widget.dart';
 import 'package:meeting_task/presentation/widgets/custom_text_form.dart';
 import 'package:meeting_task/presentation/widgets/custom_text_title_widget.dart';
+
+import '../../utils/constant.dart';
 
 class NewTaskScreen extends StatelessWidget {
 
@@ -111,19 +112,19 @@ class NewTaskScreen extends StatelessWidget {
   _buildCategoryButtonTypesPart() => SizedBox(
         height: 50,
         child: ListView.builder(
-          itemCount: di<CreateTaskCubit>().categoryList.length,
+          itemCount: categoryList.length,
           itemBuilder: (context, i) => Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: BlocBuilder<CreateTaskCubit, CreateTaskState>(
               builder: (context, state) {
                 return CustomButtonWidget(
                   style: ThemeData().textTheme.bodyText1!.copyWith(
-                      color: di<CreateTaskCubit>().isSelect[i]
+                      color: isSelect[i]
                           ? white
                           : smokyMint),
-                  isSelect: di<CreateTaskCubit>().isSelect[i],
+                  isSelect: isSelect[i],
                   onPress: () => di<CreateTaskCubit>().selectCategory(i),
-                  txt: di<CreateTaskCubit>().categoryList[i],
+                  txt: categoryList[i],
                 );
               },
             ),

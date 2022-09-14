@@ -6,9 +6,8 @@ import 'package:meeting_task/repo/set_meetings_data_repository.dart';
 
 GetIt di = GetIt.I..allowReassignment = true;
 Future<void> initializeDependency() async {
-  di.registerLazySingleton<CreateTaskRepo>(() => CreateTaskImp());
+  di.registerLazySingleton<CreateTaskRepo>( () => CreateTaskImp());
   di.registerLazySingleton<CreateTaskCubit>(() => CreateTaskCubit(di<CreateTaskRepo>()));
-  di.registerFactory<DisplayDataRepo>(() => DisplayDataImplement());
-  di.registerLazySingleton<GetDataCubit>(() => GetDataCubit(di<DisplayDataRepo>()));
-
+  di.registerLazySingleton<DisplayDataRepo>(() => DisplayDataImplement());
+  di.registerSingleton<GetDataCubit>(GetDataCubit(di<DisplayDataRepo>()));
 }

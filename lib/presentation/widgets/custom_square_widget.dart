@@ -3,10 +3,12 @@ import 'package:meeting_task/config/color.dart';
 import 'package:meeting_task/config/font_style.dart';
 
 class CustomSquareWidget extends StatelessWidget {
-  CustomSquareWidget({Key? key, required this.isSelect,required this.isIcon, this.onTap}) : super(key: key);
+  CustomSquareWidget({Key? key, required this.isSelect,required this.isIcon, this.onTap,  this.num,  this.txt}) : super(key: key);
   final bool isSelect;
   final bool isIcon;
  final  GestureTapCallback? onTap;
+ final String? num;
+ final String? txt;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,7 +19,7 @@ class CustomSquareWidget extends StatelessWidget {
         // height: 15,
         //   width: 15,
         decoration: BoxDecoration(
-          color:isSelect ? smokyMint : white ,
+          color:isSelect ? lightBlue : white ,
           borderRadius: BorderRadius.circular(10.0),
           border: Border.all(
               color: smokyMint,
@@ -26,9 +28,9 @@ class CustomSquareWidget extends StatelessWidget {
         child: isIcon? Icon(Icons.add,color: white,size: 30,):
         Column(
           children: [
-            Expanded(child: Text('01',textAlign: TextAlign.center,style: textThemeData.headline6!,)),
+            Expanded(child: Text(num!,textAlign: TextAlign.center,style: textThemeData.headline6!,)),
              // SizedBox(height: 5,),
-            Expanded(child: Text('M',textAlign: TextAlign.center,style: textThemeData.bodyText1!,)),
+            Expanded(child: Text(txt!,textAlign: TextAlign.center,style: textThemeData.bodyText1!,)),
           ],
         ),
       ),

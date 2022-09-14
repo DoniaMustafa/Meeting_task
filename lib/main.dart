@@ -14,20 +14,28 @@ void main() async {
   await Firebase.initializeApp();
   await initializeDependency();
   runApp(
-    DevicePreview(
-      builder: (context) => const MyApp(),
-      enabled: !kReleaseMode,
+    BlocProvider(
+      create: (context) =>  di<GetDataCubit>()
+        ..getData(),
+      child:const MyApp(),
+      // DevicePreview(
+      //   builder: (context) =>
+      //   enabled: !kReleaseMode,
+      // ),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp
+
+  ({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => di<GetDataCubit>()
+      create: (context) =>
+      di<GetDataCubit>()
         ..getData(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
