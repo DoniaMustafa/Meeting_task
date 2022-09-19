@@ -6,12 +6,13 @@ CollectionReference days = FirebaseFirestore.instance.collection(dayName!);
 String? monthly= DateFormat('MMMM').format(DateTime.now());
 String? daily =DateFormat('EEEE').format(DateTime.now());
 String? dailies =DateFormat('d').format(DateTime.now());
-
+double? width =double.infinity;
+double? height;
 String? monthName;
 String? dayName;
 // String? monthName;
 String? dayNumber ;
-List categoryList = [
+List categoryList = <String>[
   'Development',
   'Research',
   'Design',
@@ -20,7 +21,7 @@ List categoryList = [
   'Marketing',
   'Business Development',
 ];
-List countNumber = [
+List countNumber = <String> [
   '1',
   '2',
   '3',
@@ -32,7 +33,7 @@ List countNumber = [
   '9',
   '10',
 ];
-List countMonthly = [
+List countMonthly =<String> [
   'S',
   'M',
   'T',
@@ -44,4 +45,4 @@ List countMonthly = [
   'M',
   'T',
 ];
-List<bool> isSelect = [true, false, false, false, false, false, false];
+List isSelect = <bool>[false, false, false, false, false, false, false];

@@ -5,43 +5,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meeting_task/config/them.dart';
 import 'package:meeting_task/presentation/cubit/get_data/get_data_cubit.dart';
+import 'package:meeting_task/presentation/screens/mobile/home_screen.dart';
 import 'package:meeting_task/utils/di.dart';
-import 'package:meeting_task/presentation/cubit/create_task/create_task_cubit.dart';
-import 'package:meeting_task/presentation/screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await initializeDependency();
   runApp(
-    BlocProvider(
-      create: (context) =>  di<GetDataCubit>()
-        ..getData(),
-      child:const MyApp(),
-      // DevicePreview(
-      //   builder: (context) =>
-      //   enabled: !kReleaseMode,
-      // ),
+    DevicePreview(
+      builder: (context) =>
+          BlocProvider(
+            create: (context) =>di<GetDataCubit>()..getDate()..getData(),
+            child:MyApp(),
+          ),
+      enabled: !kReleaseMode,
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp
-
-  ({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-      di<GetDataCubit>()
-        ..getData(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: them,
-        home: HomeScreen(),
-      ),
-    );
+    return   MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: them,
+      // initialRoute: '/home',
+      // routes: {
+      //   '/home': (context) => HomeScreen(),
+      // },
+
+          useInheritedMediaQuery: true,
+          home: HomeScreen(),
+        );
   }
 }

@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:meeting_task/config/color.dart';
 
 const TextTheme textThemeData = TextTheme(
+  headline2:TextStyle(
+      fontSize: 30, fontWeight: FontWeight.w900),
+  headline3:TextStyle(
+      fontSize: 28, fontWeight: FontWeight.w900),
+
   headline4:TextStyle(
       fontSize: 26, fontWeight: FontWeight.w900),
   headline5:TextStyle(
     fontSize: 24, fontWeight: FontWeight.w800),
   headline6: TextStyle(
-      fontSize: 22, fontWeight: FontWeight.w600, letterSpacing: 0.15),
+      fontSize: 22, fontWeight: FontWeight.w600, letterSpacing: 0.1),
   subtitle1:TextStyle(
       fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: 0.15),
   subtitle2: TextStyle(

@@ -21,14 +21,16 @@ class DisplayDataImplement implements DisplayDataRepo {
 
   @override
   Future<QuerySnapshot<Meeting>?> getData() async {
-    await handelData()
+    return await handelData()
         .where('month', isEqualTo: monthly)
         .where('day', isEqualTo: daily)
         .where('dayNumber', isEqualTo: dailies)
-        .snapshots()
-        .listen((event) {
+        .get()
+        .then((event) {
       meetingData = event.docs;
-      print(meetingData.length);
+
+    }).catchError((onError) {
+      print(onError.toString());
     });
   }
 }

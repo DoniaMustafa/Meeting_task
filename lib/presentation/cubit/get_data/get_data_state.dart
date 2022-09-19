@@ -15,3 +15,4 @@ class SuccessState extends GetDataState{
   SuccessState({required this.dataa});
 }
 class ErrorState extends GetDataState {}
+class GetDateState extends GetDataState {}

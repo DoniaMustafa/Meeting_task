@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:meeting_task/config/color.dart';
 
 ThemeData them = ThemeData(
 
@@ -12,8 +13,8 @@ ThemeData them = ThemeData(
       statusBarColor: Colors.white,
     ),
     iconTheme: IconThemeData(
-      color: Colors.grey,
-      size: 25.0,
+      color: gray,
+      size: 30.0,
     ),
   ),
   primarySwatch: Colors.blue,

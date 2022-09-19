@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:intl/intl.dart';
+import 'package:meeting_task/presentation/cubit/get_data/get_data_cubit.dart';
+import 'package:meeting_task/presentation/screens/mobile/home_screen.dart';
 import 'package:meeting_task/repo/set_meetings_data_repository.dart';
 import 'package:meeting_task/utils/constant.dart';
+import 'package:meeting_task/utils/di.dart';
 part 'create_task_state.dart';
 
 class CreateTaskCubit extends Cubit<CreateTaskState> {
@@ -12,6 +15,8 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
 
   DateTime date = DateTime.now();
   TimeOfDay time = TimeOfDay.now();
+  TimeOfDay time1 = TimeOfDay.now();
+
   TextEditingController titleTaskControl = TextEditingController();
   TextEditingController descriptionControl = TextEditingController();
 
@@ -19,39 +24,43 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
   TextEditingController startControl = TextEditingController();
   TextEditingController endControl = TextEditingController();
   String? dateFormat;
-  // String? monthName;
-  setData({
-    required String monthName,
-    required String date,
+  setData(
+      {required String monthName,
+      required String date,
+      required String title,
+      required String description,
+      required String meetingType,
+      required String startTime,
+      required String endTime,
+      required String day,
+        required int i,
 
-    required String title,
-    required String description,
-    // required String meetingType,
-    required String startTime,
-    required String endTime,
-    required String day,
-  }) {
+      context}) {
     emit(LoadState());
 
     createTask!
         .setData(
- dayNum:dayNumber!,
-
-      date:date ,
+      dayNum: dayNumber!,
+      date: date,
       title: title,
       description: description,
       day: day,
+      meetingType: meetingType,
       startTime: startTime,
       endTime: endTime,
+
     )
         .then((value) {
+
       print(day);
       print(monthName);
       print(dayNumber);
 
       print('success');
+      di<GetDataCubit>().getData();
 
-
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
       emit(SuccessState());
     }).catchError((error) {
       print(error.toString());
@@ -71,57 +80,54 @@ class CreateTaskCubit extends Cubit<CreateTaskState> {
       if (newDate == null) return;
       date = newDate;
       dateFormat = DateFormat('EEEE, d MMMM').format(date);
-    monthName = DateFormat('MMMM').format(date);
+      monthName = DateFormat('MMMM').format(date);
       dayName = DateFormat('EEEE').format(date);
-      dayNumber= DateFormat('d').format(date);
+      dayNumber = DateFormat('d').format(date);
       dateControl.text = dateFormat!.toString();
-      print(dayNumber);
+      print(dateControl.text);
       emit(DateSuccessState());
     }).catchError((onError) {
       emit(DateExceptionState());
     });
   }
 
-  Future getStartTimePicker(context) async {
+  getStartTimePicker(BuildContext context) async {
+    TimeOfDay? newTime =
+        await showTimePicker(context: context, initialTime: time1);
+    if (newTime == null) return;
+    time1 = newTime;
+    startControl.text = time1.format(context).toString();
+    emit(TimeSuccessState());
+  }
+
+  getEndTimePicker(BuildContext context) async {
+    // emit(TimeLoadState());
+
     TimeOfDay? newTime =
         await showTimePicker(context: context, initialTime: time);
     if (newTime == null) return;
     time = newTime;
-    startControl.text = time.format(context);
+    endControl.text = time.format(context).toString();
     emit(TimeSuccessState());
   }
 
-  Future getEndTimePicker(context) async {
-    emit(TimeLoadState());
+  String? categoryType;
+  bool? states;
 
-    await showTimePicker(context: context, initialTime: time).then((value) {
-      TimeOfDay? newTime = value;
-      if (newTime == null) return;
-      time = newTime;
-      endControl.text = time.format(context).toString();
-      emit(TimeSuccessState());
-    }).catchError((re) {
-      emit(TimeExceptionState());
-    });
-  }
-String? name;
-  selectCategory(int newIndex) {
+  String? name;
+  bool? selectCategory(int newIndex) {
     for (int index = 0; index < isSelect.length; index++) {
       if (index == newIndex) {
-        isSelect[index] =  true ;
+        // isSelect[index] =true;
+        isSelect[newIndex] = !isSelect[newIndex];
+        print(isSelect[newIndex]);
         print(categoryList[newIndex]);
-      } else {
-        isSelect[index] == false;
-
+        categoryType = categoryList[newIndex];
+        states = isSelect[newIndex];
+        // } else {
+        //   isSelect[newIndex] == false;
       }
-    //   if(isSelect[newIndex] = false){
-    //     print(categoryList[newIndex]);
-    // }
       emit(SelectSuccessState());
     }
-    // categoryList[newIndex]==isSelect[newIndex];
-    // name=categoryList[newIndex];
-    // print(categoryList[newIndex]);
-
   }
 }

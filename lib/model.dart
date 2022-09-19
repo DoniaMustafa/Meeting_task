@@ -7,6 +7,7 @@ class Meeting {
   final String description;
   final String day;
   final String month;
+  // final String uid;
 
   Meeting(
       {required this.title,
@@ -15,7 +16,9 @@ class Meeting {
         required this.endTime,
         required this.description,
         required this.day,
-        required this.month});
+        required this.month,
+        // required this.uid
+      });
 
   factory Meeting.fromJson(Map<String, dynamic> json) => Meeting(
     date: json["date"],
@@ -25,6 +28,7 @@ class Meeting {
     startTime: json["startTime"],
     day: json["day"],
     month: json["month"],
+    // uid: json["uid"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -34,6 +38,7 @@ class Meeting {
     "endTime": endTime,
     "startTime": startTime,
     "month": month,
-    "day": day
+    "day": day,
+    // "uid":uid
   };
 }
