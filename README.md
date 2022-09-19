@@ -10,7 +10,7 @@
 
 # Screens 
 
-![metting_mobile](https://user-images.githubusercontent.com/60053771/191097605-cb4278e9-7184-4827-8a79-23719eafe4c1.png)
-![create_meeting_mobile](https://user-images.githubusercontent.com/60053771/191097617-16d6552a-b852-463a-9d43-ba6bbcb9bf27.png) 
-![metting_tablet](https://user-images.githubusercontent.com/60053771/191097638-1fd229eb-fb59-4f02-bb63-794993753cb5.png)
-![create_meeting_tablet](https://user-images.githubusercontent.com/60053771/191097648-59871147-1bd4-421f-82a7-87777d0a1183.png)
+![metting_mobile](https://user-images.githubusercontent.com/60053771/191099399-0bb42a43-6d76-4a29-bd0c-d8c1193a6fba.png)
+![create_meeting_mobile](https://user-images.githubusercontent.com/60053771/191099413-137b837a-63a3-4823-b791-02654432c957.png)
+![metting_tablet](https://user-images.githubusercontent.com/60053771/191099427-cf03c818-619f-4093-af5d-c7177a5d19a9.png)
+![create_meeting_tablet](https://user-images.githubusercontent.com/60053771/191099647-609610b9-e6c7-4a59-9879-dae09603e734.png)
