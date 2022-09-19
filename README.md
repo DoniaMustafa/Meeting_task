@@ -1,12 +1,13 @@
 # meeting_task
 
-# Meeting taske remember you of tasks and meetings time, features used in the project
+### Meeting taske remember you of tasks and meetings time, features used in the project:
 
-1- Cloud Firestore
-2- Bloc(cubit)
-3- Responsive Ui
-4- Clean architecture (MVVM)
-5- DateTime
+- Cloud Firestore
+- Bloc(cubit)
+- Responsive Ui
+- Clean architecture (MVVM)
+- DateTime
+- Add and remove a single meeting or task
 
 # Screens 
 
