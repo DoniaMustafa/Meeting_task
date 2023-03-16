@@ -5,7 +5,7 @@
 - Cloud Firestore
 - Bloc(cubit)
 - Responsive Ui
-- Clean architecture (MVVM)
+- Clean architecture
 - DateTime
 - Add and remove a single meeting or task
 
